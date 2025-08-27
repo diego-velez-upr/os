@@ -1,4 +1,4 @@
-# Section 1 Project
+# Operating System Labs and Homeworks
 
 ## How to run
 
