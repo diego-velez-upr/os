@@ -27,6 +27,9 @@ waitpid(-1, 0, NULL);  // same as wait
 
 ## Signals
 
+- An asynchronous software interrupt sent to a process
+- Used for process communication, notification and exceptions
+
 ### Sending signal
 
 Use `kill`.
@@ -56,6 +59,25 @@ pause()  // si quieres sleep until receiving a signal.
 ```
 
 ## Message Queues
+
+Message queues are a form of IPC that allow processes to exchange structured messages asynchronously.
+
+Types of send:
+- Asynchronous
+  - Cuando el sender no espera para que el que lo recibe pues que lo reciba
+  - Afecta solo el sender, pues lo manda y no espera y ya esta
+  - Can have multiple senders/receivers
+  - Messages persist even if the receiving process isn't running
+  - Supports prioritization
+  - Essential for real-time systems, task scheduling and worker pools
+- Synchronous
+  - Sender waits until receiving process acknowledges that it received the message
+
+Message queues can either be blocking (default) or non-blocking.
+If a sender sends a message when the message queue is full,
+then the sender is blocked until the queue is cleared.
+If a receiver reads from the message queue and the queue is empty,
+then the receiver is blocked until a message is added to the queue.
 
 ### Sender
 
@@ -114,6 +136,8 @@ mq_unlink("/dvt_queue");
 
 ## Shared Memory
 
+A region in memory set up to be shared between processes by the operating system.
+
 ### Main Process Setup
 
 ```c
@@ -170,11 +194,29 @@ if (shm_ptr == MAP_FAILED) {
 munmap(shm_ptr, sizeof(struct shm));
 ```
 
+## Permissions in Linux
+
+Work with 3 bits `RWX`:
+- 0: No permission (`000`)
+- 1: Execute only (`001`)
+- 2: Write only (`010`)
+- 3: write and execute (`011`)
+- 4: read only (`100`)
+- 5: read and execute (`101`)
+- 6: read and write (`110`)
+- 7: read, write and execute (`111`)
+
+Tres diferentes entidades pueden tener diferentes permisos.
+El owner, group y otros.
+
 ## How to run
 
+Initially era asi:
 ```shell
 cd build
 cmake -S . -G "Unix Makefiles" -B build
 make -C build
 ./build/main
 ```
+
+Ahora son con el `test/test_performance.sh` file que corre el program con los tests del profesor.
