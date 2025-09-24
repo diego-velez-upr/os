@@ -11,6 +11,10 @@
 ## Creating New Processes
 
 ```c
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+
 pid_t pid = fork();
 if (pid == 0) {
   // child process
@@ -18,6 +22,7 @@ if (pid == 0) {
 }
 
 wait(NULL);  // wait until children die
+waitpid(-1, 0, NULL);  // same as wait
 ```
 
 ## Signals
