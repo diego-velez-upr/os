@@ -6,6 +6,7 @@
 - [Signals](#signals)
 - [Message Queues](#message-queues)
 - [Shared Memory](#shared-memory)
+- [Permissions in Linux](#permissions-in-linux)
 - [How to Run](#how-to-run)
 
 ## Creating New Processes
