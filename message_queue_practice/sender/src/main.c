@@ -1,10 +1,10 @@
+#include <errno.h>
 #include <fcntl.h>
 #include <mqueue.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include <errno.h>
 
 int main(void) {
   // Delete message queue in case there was something left in it
