@@ -2,10 +2,23 @@
 
 ## Table of Contents
 
+- [Creating New Processes](#creating-new-processes)
 - [Signals](#signals)
 - [Message Queues](#message-queues)
 - [Shared Memory](#shared-memory)
 - [How to Run](#how-to-run)
+
+## Creating New Processes
+
+```c
+pid_t pid = fork();
+if (pid == 0) {
+  // child process
+  execlp("<path>", "<process_name>", NULL);
+}
+
+wait(NULL);  // wait until children die
+```
 
 ## Signals
 
